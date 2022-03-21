@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const MyData = require('./MyData')
+const routes = require('./routes');
 
 app.get('/', (req, res) => {
     res.send('successfull')
 })
 
-app.use(MyData);
+app.use(routes);
 
 app.listen(3000, () => { 
     console.log('success')
