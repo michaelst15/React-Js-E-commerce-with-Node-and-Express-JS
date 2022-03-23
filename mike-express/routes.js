@@ -8,6 +8,16 @@ router.get('/produk', async (req, res) => {
     res.json(produk);
 });
 
+router.get('/produk/:id', async (req, res) => {
+    const {id} = req.params;
+    const produk = await car.findOne({
+        where: {
+            id
+        }
+    });
+    res.json(produk);
+});
+
 router.post('/produk', async (req, res) => {
  const {id, nama, produsen, Harga} = req.body;
     try{
