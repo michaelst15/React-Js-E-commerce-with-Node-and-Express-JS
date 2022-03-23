@@ -3,7 +3,7 @@ const connection = require("../Config/Sequelize")
 
 const index = (req, res) => {
     connection.query({
-       sql: 'SELECT * FROM buku', 
+       sql: 'SELECT * FROM cars'
     }, _response(res));
 }
 
@@ -12,7 +12,7 @@ const _response = (res) => {
         if(error) {
             res.send({
             status: 'failed',
-            message: message
+            message: 'not found'
             })
         } else {
             res.send({

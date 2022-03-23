@@ -1,25 +1,28 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../Config/Sequelize');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../Config/Sequelize').sequelize;
 
-const Buku = sequelize.define('Buku', {
+const car = sequelize.define('car', {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
   },
-  nama_buku: {
+  nama: {                   
+    type: DataTypes.STRING,    
+    allowNull: false, 
+  },
+  produsen: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
-  jenis_buku: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  harga_buku: {
+  Harga: {
     type: DataTypes.INTEGER,
-    allowNull: false
-  }
-}, {
-});
+    allowNull: false,
+  }, 
+ },{
+   timestamps : false,
+ });
 
-module.exports = Buku;
+module.exports = {
+  car
+};
