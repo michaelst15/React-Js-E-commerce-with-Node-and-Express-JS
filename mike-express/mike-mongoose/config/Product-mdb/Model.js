@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
-    proffession: {
-        type: String,
-        allowNull: false
-    },
     proffession: {  
         type: String,
         allowNull: false
