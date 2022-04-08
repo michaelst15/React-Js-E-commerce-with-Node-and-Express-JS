@@ -27,7 +27,7 @@ const localStrategy = async (email, password, done) => {
      try{
          let user = await User 
          .findOne({email})
-         .select('.__v -createAt -updateAt -cart_items -token'); // '__v -createAt -updateAt -cart_items -token ' (simbol - )=> tidak diikutkan 
+         .select('-__v -createdAt -updateAt -cart_items -token'); // '__v -createAt -updateAt -cart_items -token ' (simbol - )=> tidak diikutkan 
          if(!user) return done(); // jika tidak mendapatkan email(user) akan langsung diarahkan ke parameter done(error) sama seperti next;
          if(bcrypt.compareSync(password, user.password)){
              ( {password, ...userWithoutPassword}  = user.toJSON() ); // sama seperti const {password, ...userWithoutPassword}  = user.toJSON();
@@ -56,7 +56,7 @@ const login = async (req, res, next) => {
            token: signed
         })
     })(req, res, next)
-}
+};
 
 module.exports = {
     register,
