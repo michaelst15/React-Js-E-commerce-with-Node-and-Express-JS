@@ -2,14 +2,14 @@ const router = require('express').Router();
 const multer = require('multer');
 const os = require('os');
 const { police_check } = require('../../middlewares');
-const categoryController = require('./controller');
+const tagController = require('./controller');
 
 
 
-router.get('/tag', categoryController.index);
-router.post('/tag', multer({dest: os.tmpdir()}).single('image'), police_check('create', 'Tag'), categoryController.store);
-router.put('/tag/:id', multer({dest: os.tmpdir()}).single('image'), police_check('update', 'Tag'), categoryController.update);
-router.delete('/tag/:id', police_check('delete', 'Tag'), categoryController.destroy);
+router.get('/tag', tagController.index);
+router.post('/tag', multer({dest: os.tmpdir()}).single('image'), police_check('create', 'Tag'), tagController.store);
+router.put('/tag/:id', multer({dest: os.tmpdir()}).single('image'), police_check('update', 'Tag'), tagController.update);
+router.delete('/tag/:id', police_check('delete', 'Tag'), tagController.destroy);
 
 
 module.exports = router; 

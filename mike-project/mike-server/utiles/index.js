@@ -13,6 +13,14 @@ const policies = {
     user(user, {can}) {
         can('view', 'Order');
         can('create', 'Product');
+        can('update', 'Product');
+        can('delete', 'Product');
+        can('create', 'Tag');
+        can('update', 'Tag');
+        can('delete', 'Tag');
+        can('create', 'Category');
+        can('update', 'Category');
+        can('delete', 'Category');
         can('read', 'Order', {user_id: user._id});
         can('update', 'User', {_id: user._id});
         can('read', 'Cart', {user_id: user._id});

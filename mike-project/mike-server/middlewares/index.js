@@ -7,6 +7,7 @@ function decodeToken() {
     return async function (req, res, next) {
         try{
             let token = getToken(req);
+            // console.log(token);
             if(!token) return next();
             req.user = jwt.verify(token, config.secretKey);
             let user = await User.findOne({token: {$in: [token]}});

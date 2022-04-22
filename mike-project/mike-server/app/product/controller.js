@@ -23,6 +23,7 @@
          // relasi product dengan tag
          if(payload.tags && payload.tags.length > 0){
             let tags = await Tag.find({in: payload.tags});
+            console.log(tags)
          if(tags.length) {
             payload = {...payload, tags: tags.map(tag => tag._id)}
           } else {

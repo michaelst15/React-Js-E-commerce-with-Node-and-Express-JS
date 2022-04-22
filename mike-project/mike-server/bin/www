@@ -16,8 +16,9 @@ const db = require('../database/index');
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+
 // /**
-//  * Create HTTP server.
+//  * Create HTTP server.  
 //  */
 
 var server = http.createServer(app);
@@ -89,4 +90,6 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-}
+}  
+
+
