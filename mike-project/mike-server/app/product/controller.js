@@ -22,7 +22,7 @@
 
          // relasi product dengan tag
          if(payload.tags && payload.tags.length > 0){
-            let tags = await Tag.find({in: payload.tags});
+            let tags = await Tag.find({name: {$in: payload.tags}});
             console.log(tags)
          if(tags.length) {
             payload = {...payload, tags: tags.map(tag => tag._id)}
@@ -33,7 +33,7 @@
 
 
          if(req.file){
-             console.log(req.file)
+            //  console.log(req.file)
              let tmp_path = req.file.path;
              let originalExt = req.file.originalname.split('.')[req.file.originalname.split('.').length - 1];
              let filename = req.file.filename + '.' + originalExt;
@@ -98,7 +98,7 @@
 
          // relasi product dengan tag
         if(payload.tags && payload.tags.length > 0){
-            let tags = await Tag.find({in: payload.tags});
+            let tags = await Tag.find({name: {$in: payload.tags}});
         if(tags.length) {
             payload = {...payload, tags: tags.map(tag => tag._id)}
           } else {
@@ -166,7 +166,7 @@
 
 const index = async(req, res, next) => {
      try{
-       let {skip = 0, limit = 10, q = '', category = '', tags = []} = req.query;
+       let {skip = 0, limit = 5, q = '', category = '', tags = []} = req.query;
        let criteria = {};
 
        if(q.length) {
@@ -190,7 +190,6 @@ const index = async(req, res, next) => {
         }
      }
        
-       console.log(criteria);
 
        let count = await Product.find().countDocuments();
        let product = await Product

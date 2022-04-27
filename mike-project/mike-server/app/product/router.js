@@ -17,4 +17,4 @@ router.put('/products/:id', multer({dest: os.tmpdir()}).single('image'), police_
 router.delete('/products/:id', police_check('delete', 'Product'), productController.destroy);  
 
 
-module.exports = router; 
+module.exports = router;       
