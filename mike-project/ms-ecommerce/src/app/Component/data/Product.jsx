@@ -22,23 +22,21 @@ function Product(){
 
 
   return(
-      <div>
-          <div className='mt2'>
+      <div className='Product'>
+          <div className='container'>
             {value.data?.map( (data, Index) => {
-              return( 
-                <div key={Index}>
-                      <img src={`http://localhost:3300/images/${data.image_url}`} />
-                      <Card
-                        // img
-                        h5={data.name}
-                        desc={data.description}
-                        price={data.price}
-                      />
-                    </div>
-                )
-            })};
+                    return( 
+                      <div key={Index}>
+                                <Card
+                                  img={data.image_url}
+                                  h5={data.name}
+                                  price={data.price} 
+                                  desc={data.description}
+                                />                   
+                          </div>                         
+                          )})}   
+           </div> 
       </div>
-   </div>
 )};
 
 export default Product;

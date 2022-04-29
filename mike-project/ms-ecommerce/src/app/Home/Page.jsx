@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card} from 'react-bootstrap';
+import {Card, DropdownButton} from 'react-bootstrap';
 import '../../App.css';
 import Product from '../Component/data/Product';
 import jamtangan from '../img/jamtangan.jpg';
@@ -10,22 +10,28 @@ function Page() {
      <div>
        <div className='block-one'>
          <div className='d-flex'>
-            <label className='mt-3'>MIKe.Store</label>
-            <div className='input' style={{marginLeft: '40px'}}>
+            <label className='mt-3 text-white'>MIKe.Store</label>
+            <span className='input' style={{marginLeft: '40px'}}>
               <input className='mt-3' placeholder='Cari Barang'/>
+            </span>
+            <div className='Category' style={{marginLeft: '80px', marginTop: '10px'}}>
+              <DropdownButton id='dropdown-item-button' title='Kategori'>
+              <p style={{marginTop: '18px', marginLeft: '10px'}}>Jam Tangan Pria</p>
+              <p style={{marginTop: '18px', marginLeft: '10px'}}>Jam Tangan Wanita</p>
+              </DropdownButton>
             </div>
           </div>
-          <i className="fa-solid fa-cart-shopping" style={{float: 'right', marginRight: 140, marginTop: -23}}></i>
-          <p style={{float: 'right', marginRight: 70, marginTop: -27}}>Login</p>
+          <i className="fa-solid fa-cart-shopping" style={{float: 'right', marginRight: 140, marginTop: '-28px', color: 'white'}}></i>
+          <p style={{float: 'right', marginRight: 70, marginTop: '-32px', color: 'white'}}>Login</p>
        </div>
 
        <div className='block-two'>
-              <div className='image mt-5'>
+              <span className='image mt-5'>
                 <img src={jamtangan} style={{height: "400px", width: "700px", borderRadius: '20px'}}/>
-              </div>
-              <div className='article'>
+              </span>
+              <span className='article'>
                 <p id='paragrafImage'>Time Is Very Important For Life</p>
-              </div>
+              </span>
        </div>
 
        <div className='block-three'>

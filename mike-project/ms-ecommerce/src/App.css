@@ -2,11 +2,47 @@
   /* text-align: center; */
 }
 
+#dropdown-item-button {
+  color: white;
+  background-color: #25140f;
+  border: #25140f;
+}
+
+#dropdown-item-button:active {
+  color: #25140f;
+}
+
+.item-description {
+  width: 300px;
+  color: black;
+  margin-left: 10px;
+  font-size: 10px;
+}
+
+.Item-Product {
+  height: 420px;
+  border: 2px solid #25140f;
+  border-radius: 2pc;
+  margin: 15px;
+}
+
+.container {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
+
+.Product {
+  display: flex;
+  width: 100%;
+}
+
 .block-one{
   font-family: 'Abril Fatface', cursive;
-  background-color: #25140f;
   height: 60px;
-  color: white;
+  background-color: #25140f;
+  color: 'red';
 }
 
 .block-two{
@@ -18,13 +54,13 @@
   height: 500px;
 }
 
+
 .block-three{
-  background-color: #25140f;
-  height: 450px;
+  height: 600px;
 }
 
 .block-four{
-  background-color: rgba(3, 28, 3, 0.768);
+  background-color: rgba(62, 30, 7, 0.887);
   height: 400px;
 }
 
