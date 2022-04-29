@@ -7,8 +7,8 @@ const Card = ({img, h5, desc, price}) => {
               <div className='item-description mx-5'>
                 <h5 style={{textAlign: 'center'}}>{h5}</h5>
                 <p style={{fontSize: '14px'}}>{desc}</p>
-                  <div className='d-flex mt-4'>
-                     <i className="fa-solid fa-cart-shopping fs-5"></i>
+                  <div className='d-flex'>
+                     <i className="fa-solid fa-cart-shopping fs-5" ></i>
                      <p className='fs-5 mx-3' style={{marginTop: '-7px'}}>Rp.{price}</p>
                   </div>
               </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, DropdownButton} from 'react-bootstrap';
+import {Card, Container, Navbar, NavDropdown, Nav} from 'react-bootstrap';
 import '../../App.css';
 import Product from '../Component/data/Product';
 import jamtangan from '../img/jamtangan.jpg';
@@ -15,14 +15,25 @@ function Page() {
               <input className='mt-3' placeholder='Cari Barang'/>
             </span>
             <div className='Category' style={{marginLeft: '80px', marginTop: '10px'}}>
-              <DropdownButton id='dropdown-item-button' title='Kategori'>
-              <p style={{marginTop: '18px', marginLeft: '10px'}}>Jam Tangan Pria</p>
-              <p style={{marginTop: '18px', marginLeft: '10px'}}>Jam Tangan Wanita</p>
-              </DropdownButton>
+              <Navbar>
+                <Container fluid>
+                  <Navbar.Collapse id='navbar'>
+                    <Nav>
+                      <NavDropdown
+                        id='nav-dropdown'
+                        title='Kategori'
+                      >
+                        <NavDropdown.Item>Jam Tangan Pria</NavDropdown.Item>
+                        <NavDropdown.Item>Jam Tangan Wanita</NavDropdown.Item>
+                      </NavDropdown>
+                    </Nav>
+                  </Navbar.Collapse>
+                </Container>
+              </Navbar>
             </div>
           </div>
-          <i className="fa-solid fa-cart-shopping" style={{float: 'right', marginRight: 140, marginTop: '-28px', color: 'white'}}></i>
-          <p style={{float: 'right', marginRight: 70, marginTop: '-32px', color: 'white'}}>Login</p>
+          <i className="fa-solid fa-cart-shopping" style={{float: 'right', marginRight: 140, marginTop: '-35px', color: 'white'}}></i>
+          <p style={{float: 'right', marginRight: 70, marginTop: '-39px', color: 'white'}}>Login</p>
        </div>
 
        <div className='block-two'>

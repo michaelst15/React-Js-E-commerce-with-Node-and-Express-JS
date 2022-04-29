@@ -2,14 +2,9 @@
   /* text-align: center; */
 }
 
-#dropdown-item-button {
+#nav-dropdown {
   color: white;
-  background-color: #25140f;
-  border: #25140f;
-}
-
-#dropdown-item-button:active {
-  color: #25140f;
+  margin-top: -8px;
 }
 
 .item-description {
