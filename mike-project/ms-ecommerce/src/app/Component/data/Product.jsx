@@ -9,7 +9,7 @@ function Product(){
        axios.get(`http://localhost:3300/api/products`)  
 
         .then(response => {
-           setValue(response.data)
+            setValue(response.data)
         })
         .catch(err => {
             setValue(err)
@@ -32,9 +32,10 @@ function Product(){
                                   h5={data.name}
                                   price={data.price} 
                                   desc={data.description}
+                                  tags={data.tags?.name}
                                 />                   
-                          </div>                         
-                          )})}   
+                      </div>                         
+                      )})};
            </div> 
       </div>
 )};
