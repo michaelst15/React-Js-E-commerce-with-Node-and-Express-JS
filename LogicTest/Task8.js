@@ -1,4 +1,4 @@
-function Value(){
+function value(){
     for(let i = 1; i <= 15; i++){
         if(i % 3 === 0 && i % 5 === 0){
             console.log('eduwork')
@@ -13,4 +13,4 @@ function Value(){
     }
 }
 
-Value()
+value()
