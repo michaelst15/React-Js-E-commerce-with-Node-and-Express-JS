@@ -1,17 +1,17 @@
-let num = 104;
 
-function Value(){
-   if(num === 4){
-       return 'empat'
-   } else if(num === 20) {
-       return 'dua puluh'
-   } else if(num === 39) {
-       return 'tiga puluh sembilan'
-   } else if(num === 104){
-       return 'silahkan masukkan bilangan 1-100'
-   } else {
-       return null
+let value = 101;
+function ubah(angka){
+let bilangan = ['', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan', 'sepuluh']
+
+if(angka < 11){
+    return bilangan[angka]
+   }
+else if(angka < 100){
+    return ubah(Math.floor(parseInt(angka)/10))+ ' puluh ' +ubah(parseInt(angka)%10)
+   }
+else if(angka > 100){
+    return 'silahkan masukkan bilangan 1-100'
    }
 }
 
-console.log(Value())
+console.log(ubah(value))

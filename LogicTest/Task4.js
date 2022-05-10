@@ -2,7 +2,7 @@ let a = 3;
 let b = 7;
 
 function value() {
-    var x = a
+    x = a
     a = b ;
     b = x;
     return [a, b];
