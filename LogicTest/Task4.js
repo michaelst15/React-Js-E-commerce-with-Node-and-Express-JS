@@ -2,9 +2,7 @@ let a = 3;
 let b = 7;
 
 function value() {
-    x = a
-    a = b ;
-    b = x;
+    [a, b] = [b, a]
     return [a, b];
 }
 
