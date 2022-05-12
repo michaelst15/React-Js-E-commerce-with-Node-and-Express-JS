@@ -5,27 +5,30 @@ import {Container, Navbar, NavDropdown, Nav} from 'react-bootstrap';
 import Card from '../Card';
 
 function Category() {
-  const [Data, setData] = useState([]);
+  const [value, setValue] = useState([]);
   const [dataSearch, setDataSearch] = useState([]);
   const [text, setText] = useState("");
  
   useEffect(() => {
-    axios(`${urlApi}/api/products?`).then(
+    axios.get(`${urlApi}/api/products?`)
+    .then(
       (result) => {
-        setData(result.data);
+        setValue(result.data);
         setDataSearch(result.data);
         console.log(result);
       }
     );
   }, []);
 
+
   useEffect(() => {
     const filterWisata = dataSearch.filter((item) =>
       item.category.toLowerCase().includes(text.toLowerCase())
     );
-    setData(filterWisata);
+    setValue(filterWisata);
     console.log(filterWisata);
-  }, []);
+  }, [text]);
+
 
 
   const handleInput = (e) => {
@@ -56,9 +59,9 @@ function Category() {
         </Navbar>
         </div>
         <div>
-        {Data.data?.map((data) => {
+        {value.data?.map((data) => {
             return(
-                <div>
+                <div key={data.id}>
                     <Card
                         img={data.image_url}
                         h5={data.name}
