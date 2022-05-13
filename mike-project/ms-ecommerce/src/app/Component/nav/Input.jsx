@@ -24,10 +24,10 @@ useEffect(() => {
 }, []);
 
 const handleInput = (e) => {
-    let value = e.target.value.toLowerCase();
+    let val = e.target.value.toLowerCase();
     let result = [];
-    console.log(value)
-    result = value.filter((data) => {
+    console.log(val)
+    result = val.filter((data) => {
         return data.name.toLowerCase().includes(dataSearch.toLowerCase());
     });
     setDataSearch(result);
@@ -42,7 +42,7 @@ const handleInput = (e) => {
     <form style={{marginTop: '14px', marginLeft: '20px'}}> 
     <input 
     placeholder='Cari Barang'
-    onChange={handleInput}
+    onClick={handleInput}
     />
     </form>
  </div>
