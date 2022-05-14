@@ -6,50 +6,59 @@ import Card from "../Card";
 
 function Input() {
 
-const [value, setValue] = useState([]);
-const [dataSearch, setDataSearch] = useState('');
+const [filterVal, setFilterVal] = useState('');
+const [result, setResult] = useState([]);
+const [searchFilter, setSearchFilter] = useState([]);
 
 
 useEffect(() => {
-  axios.get(`${urlApi}/api/products`)
-  .then( response => {
-      setValue(response.data);
-      setDataSearch(response.data);
-      console.log(response.data);
-    }
-  )
-  .catch(err => {
-    return err
-  })
+    axios.get(`${urlApi}/api/products`)
+    .then(response => {
+       setResult(response.data)
+      //  setSearchApiData(response.data)
+    })
 }, []);
 
-const handleInput = (e) => {
-    let val = e.target.value.toLowerCase();
-    let result = [];
-    console.log(val)
-    result = val.filter((data) => {
-        return data.name.toLowerCase().includes(dataSearch.toLowerCase());
-    });
-    setDataSearch(result);
-  };
+useEffect(() => {
+  setSearchFilter(
+    result.filter((user) => user.name.toLowerCase().includes(filterVal.toLowerCase()))
+  )
+ 
+  // const filterData = result.filter((item) =>
+  //   item.name.toLowerCase().includes(filterVal)
+  // );
+  // setResult(filterData);
+  // console.log(filterData);
+}, [filterVal, result]);
+
+
+// const hadlerFilter = (nilai) => {
+//   if(filterVal === ''){
+//     return nilai
+//   } else {
+//     const filterResult = searchApiData.filter(item => item.name.toLowerCase().includes(filterVal.toLowerCase()))
+//     return nilai
+//   }
+//   setFilterVal(nilai)
+// }
+
+// const handleSubmit = (e) => {
+//    setFilterVal(e.target.value);
+// }
 
 
   
-
-   return(
-       <div>
+ return(
     <div>
-    <form style={{marginTop: '14px', marginLeft: '20px'}}> 
-    <input 
-    placeholder='Cari Barang'
-    onClick={handleInput}
-    />
-    </form>
- </div>
-       <div>
-            {value.data?.map((value, key) => {
+        <input 
+        placeholder='Cari Barang'
+        type='text'
+        name='input'
+        onChange={e => setFilterVal(e.target.value)}
+        />
+            {searchFilter.data?.map((value) => {
               return(
-                   <div key={key}>
+                   <div>
                     <Card
                         img={value.image_url}
                         h5={value.name}
@@ -60,8 +69,7 @@ const handleInput = (e) => {
                    </div>
                )
            })}
-       </div>
-       </div>
+   </div>
    )
 }
 
