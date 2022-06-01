@@ -2,8 +2,49 @@
   /* text-align: center; */
 }
 
+.login {
+  height: 390px;
+  width: 320px;
+  margin-left: 490px;
+  margin-top: 70px;
+  box-shadow: 2px 2px 2px 2px gray;
+  border: 2px solid white;
+}
+
+.login label {
+  padding-left: 20px;
+}
+
+.register {
+  height: 440px;
+  width: 320px;
+  margin-left: 490px;
+  margin-top: 70px;
+  box-shadow: 2px 2px 2px 2px gray;
+  border: 2px solid white;
+}
+
+.register label {
+  padding-left: 20px;
+}
+
+.close {
+  color: #25140f;
+  margin-top: 20px;
+  margin-left: 290px;
+}
+
+#input-login {
+  width: 280px;
+  margin-left: 19px;
+}
+
+.title {
+  font-family: "Abril Fatface", cursive;
+}
+
 #nav-dropdown {
-  color: white;
+  color: black;
   margin-top: -8px;
 }
 
@@ -14,33 +55,59 @@
   font-size: 10px;
 }
 
+.Item {
+  height: 520px;
+}
+
 .Item-Product {
+  width: 400px;
   height: 450px;
   border: 2px solid #25140f;
   border-radius: 2pc;
   margin: 15px;
 }
 
-.container {
+.item-description button {
+  width: 80px;
+  font-size: 12px;
+  height: 40px;
+  border-radius: 7px;
+  color: white;
+  cursor: pointer;
+  background-color: #25140f;
+}
+
+.Item-Product-Second {
+  height: 450px;
+  border: 2px solid #25140f;
+  border-radius: 2pc;
+  margin-top: 900px;
+  margin: 15px;
+}
+
+/* .container {
   margin-top: 60px;
   display: flex;
   flex-direction: row;
   overflow-x: auto;
 }
 
-.Product {
-  display: flex;
-  width: 100%;
-}
+.container::-webkit-scrollbar {
+  -webkit-appearance: none;
+} */
 
-.block-one{
-  font-family: 'Abril Fatface', cursive;
+.block-one {
+  font-family: "Abril Fatface", cursive;
   height: 60px;
   background-color: #25140f;
-  color: 'red';
+  color: "red";
 }
 
-.block-two{
+.block-one label {
+  margin-left: 70px;
+}
+
+.block-two {
   display: flex;
   width: 100%;
   background-color: rgba(62, 30, 7, 0.887);
@@ -49,57 +116,51 @@
   height: 500px;
 }
 
-
-.block-three{
-  height: 600px;
+.block-three {
+  height: 700px;
 }
 
-.block-four{
+.block-four {
   background-color: rgba(62, 30, 7, 0.887);
   height: 400px;
 }
 
-.block-five{
+.block-five {
   border-top: 1px solid white;
-  background-color:  #25140f;
+  background-color: #25140f;
   height: 400px;
   width: 100%;
 }
 
-input{
+input {
   width: 470px;
-  padding-left: 40px;
 }
 
-label{
-  margin-left: 20px;
+.image {
+  margin-left: 70px;
 }
 
-.image{
-  margin-left: 20px;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display+SC&family=Quattrocento&display=swap');
-.about{
-  font-family: 'Abril Fatface', cursive;
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display+SC&family=Quattrocento&display=swap");
+.about {
+  font-family: "Abril Fatface", cursive;
   text-align: center;
   padding-top: 90px;
 }
 
-.article{
+.article {
   margin-top: 100px;
   width: 450px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-.titleFooter{
-  font-family: 'Abril Fatface', cursive;
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+.titleFooter {
+  font-family: "Abril Fatface", cursive;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display+SC&display=swap');
-#paragrafImage{
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display+SC&display=swap");
+#paragrafImage {
   color: white;
-  font-family: 'Abril Fatface', cursive;
+  font-family: "Abril Fatface", cursive;
   font-size: 50px;
   margin-left: 200px;
 }
