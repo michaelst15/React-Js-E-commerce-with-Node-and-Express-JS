@@ -1,40 +1,20 @@
 import React from 'react';
-import {Card, Container, Navbar, NavDropdown, Nav} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import '../../App.css';
-import Product from '../Component/data/Product';
+import { Link } from 'react-router-dom';
 import jamtangan from '../img/jamtangan.jpg';
-
+import Logout from '../Component/nav/Logout';
 
 function Page() {
     return(
      <div>
        <div className='block-one'>
          <div className='d-flex'>          
-            <label className='mt-3 text-white'>MIKe.Store</label>
-            <span className='input' style={{marginLeft: '40px'}}>
-              <input className='mt-3' placeholder='Cari Barang'/>
-            </span>
-
-            <div className='Category' style={{marginLeft: '80px', marginTop: '10px'}}>
-              <Navbar>
-                <Container fluid>
-                  <Navbar.Collapse id='navbar'>
-                    <Nav>
-                      <NavDropdown
-                        id='nav-dropdown'
-                        title='Kategori'
-                      >
-                        <NavDropdown.Item>Jam Tangan Pria</NavDropdown.Item>
-                        <NavDropdown.Item>Jam Tangan Wanita</NavDropdown.Item>
-                      </NavDropdown>
-                    </Nav>
-                  </Navbar.Collapse>
-                </Container>
-              </Navbar>
-            </div>      
+            <label className='mt-3 text-white'>MIKe.Store</label>                                                                       
          </div>
-          <i className="fa-solid fa-cart-shopping" style={{float: 'right', marginRight: 140, marginTop: '-35px', color: 'white'}}></i>
-          <p style={{float: 'right', marginRight: 70, marginTop: '-39px', color: 'white'}}>Login</p>
+          <Link to='/Shop'><div style={{float: 'right', marginRight: 183, marginTop: '-25px', color: 'white'}}>Shop</div></Link>
+          <Link to='/Login'><div style={{float: 'right', marginRight: 120, marginTop: '-25px', color: 'white'}}>Login</div></Link>
+          <Logout/>
          </div>
 
         <div className='block-two'>
@@ -45,10 +25,6 @@ function Page() {
             <p id='paragrafImage'>Time Is Very Important For Life</p>
           </span>
         </div>
-
-       <div className='block-three'>
-           <Product/>
-       </div>
 
        <div className='block-four'>
          <div className='about'>
@@ -66,7 +42,7 @@ function Page() {
 
       <div className='block-five'>
         <h2 className='titleFooter text-white' style={{marginLeft: '600px', marginTop: '30px'}}>MIKe.Store</h2>
-          <div className='d-flex' style={{marginTop: '100px', marginLeft: '340px'}}>
+          <div className='d-flex' style={{marginTop: '100px', marginLeft: '370px'}}>
             <div className='text-white col-md-3'>
                 <h6><i>Store</i></h6>
                 <p>Tentang MIKe.Store</p>

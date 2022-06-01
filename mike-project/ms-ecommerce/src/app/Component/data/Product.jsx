@@ -1,47 +1,74 @@
 import React, {useState, useEffect} from 'react'; 
 import {Container, Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import urlApi from '../urlApi';
-// import Card from '../Card';
 import axios from 'axios';
-// import {useNavigate} from 'react-router-dom';
 import Cookies from 'js-cookie';
-// import { useNavigate } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+
+const PAGE_PRODUCTS = 'products';
+const PAGE_CARTS = 'carts'
+const PAGE_DELIVERY = 'delivery';
+const PAGE_BOOKING = 'booking;'
 
 
-function Product(){
-    // const navigate = useNavigate();
+function Product() {
     const [cart, setCart] = useState([]); 
-    // const [cartItem, setCartItem] = useState([]);
-    // const Navigate = useNavigate();
     const [value, setValue] = useState([]);
+    const [nama, setNama] = useState([]);
+    const [user, setUser] = useState([]);
+    const [detail, setDetail] = useState([]);
+    const [kabupaten, setKabupaten] = useState([]);
+    const [kecamatan, setKecamatan] = useState([]);
+    const [kelurahan, setKelurahan] = useState([]);
+    const [provinsi, setProvinsi] = useState([]);
+    const [validation, setValidation] = useState([]);
+    const [page, setPage] = useState(PAGE_PRODUCTS);
     // console.log(value)
-    // console.log(value)
-    // const get = () => {
-    //     axios.get(`${urlApi}/api/products`)  
-    //       .then(response => {
-    //           console.log(response.data)
-    //       })
-    //       .catch(err => {
-    //           console.log(err.message)
-    //       })
-    // }
 
+   //mendapatkan data cart
    const toCarts = () => {
      const token = Cookies.get('token');
-      //  console.log(token)
       axios.get(`${urlApi}/api/carts`, {
              headers: {Authorization : `${token}`}}, 
          )  
       .then(response => {
             setValue(response.data)
-            // console.log(response.data)
         })
       .catch(err => {
             setValue(err.message)
         })
    }
 
+   //mendapatkan data user
+   const getUser = () => {
+     const token = Cookies.get('token');
+      axios.get(`${urlApi}/auth/me`, {
+        headers: {Authorization: `${token}`}
+      })
+      .then(response => {
+        setUser(response.data)
+      })
+      .catch(err => {
+        setUser(err.message)
+      })
+   }
+
+   //mendapatkan data delivery address
+   const deliveryAddress = () => {
+     const dataDelivery = {nama, user, detail, kabupaten, kecamatan, kelurahan, provinsi};
+     const token = Cookies.get('token');
+      axios.post(`${urlApi}/api/delivery-address`, dataDelivery, {
+        headers: {Authorization: `${token}`}},
+      )
+      .then(response => {
+        setValidation(response.data)
+      })
+      .catch(err => {
+        setValidation(err.message)
+      })
+   }
+
+   //menambahkan(button addToCart) product ke keranjang belanja
     const addToCart = (item) => {
       let cart2 = [...cart]
       cart2.push({ ...item })
@@ -52,42 +79,38 @@ function Product(){
       })
       setCart(cart2)
   }
-      // let cart2 = [...cart]
-      // value.map(i => {
-      // if(cart2.push({...item, i: item.product?._id === item.product?._id ? item.i + 1 : item.i})){
-      //   item.cart = true
-      // }
-      // })
-      // setCart(cart2)
 
-    const removeToCart = (item) => {
-      let cart2 = cart.filter((i) => {
-        cart.map((i) => {
-          if(i.id === item.id) {
-            i.cart = false
-          }
-        })
-        console.log(i)
-      })
+  //menghapus belanja
+   const removeToCart = (item) => {
+      let cart2 = cart.filter((value) => 
+         value !== item
+        )
       setCart(cart2)
     }
 
-    const increase = (cart_id) => {
-      setCart(cart =>
-        cart.map( (item) => 
-            cart_id === item.id ? {...item, product_qty: item.product_qty + 1} : item
-          )
-        )
+    //mengurangi jumlah qty belanja
+    const increase = (item) => {
+     let x = cart.map(i => {
+       if(item.product?._id === i.product?._id) {
+         i.qty += 1
+       }
+       return i
+     })
+     setCart(x)
     }
 
-    const decrease = (cart_id) => {
-      setCart(cart =>
-        cart.map( (item) => 
-            cart_id === item.id ? {...item, product_qty: item.product_qty - 1} : item
-          )
-        )
+    //menambah jumlah qty belanja
+    const decrease = (item) => {
+      let x = cart.map(i => {
+        if(item.product?._id === i.product?._id) {
+          i.qty -= 1
+        }
+        return i
+      })
+      setCart(x)
     }
 
+    //total belanja
     const total = () => {
       let x = 0 
       cart.map((i) => {
@@ -96,112 +119,264 @@ function Product(){
       return x
     }
 
+    //mengganti page/halaman
+    const navigateTo = (nextPage) => {
+      setPage(nextPage)
+    }
+   //list product
+    const renderProducts = () => {
+      return(
+        <div className='Product'>
+          <h3 className='title text-center mt-5'>Product</h3>
+            <div className='container'>
+              <Row md='3'>
+              {value.map( (data, Index) => {
+                    return( 
+                      <Col>
+                        <div key={Index}>
+                          <div className='Item'>
+                            <div className='Item-Product'>
+                              <img 
+                                src={`${urlApi}/images/${data.product?.image_url}`} 
+                                style={{height: '120px', marginLeft: '130px', marginTop: '10px', marginBottom: '25px'}}>
+                              </img> 
+                                <div className='item-description mx-5'>
+                                  <h5 style={{textAlign: 'center'}}>{data.product?.name}</h5>
+                                    <p style={{fontSize: '14px', marginBottom: '20px'}}>{data.product?.description}</p>
+                                      <div className='d-flex bg-dark text-white' style={{width: '90px', borderRadius: '8px'}}>
+                                        <i 
+                                          className="fa-solid fa-tag" 
+                                          style={{paddingTop: '12px', paddingLeft: '14px', paddingRight: '7px'}}>
+                                        </i>
+                                        <p className='mx-2' style={{paddingTop: '9px'}}>{data.product?.tags}</p>
+                                      </div>
+                                      <div style={{marginTop: '15px', textAlign: 'center'}}>
+                                        <p className='fs-5'>Rp.{data.product?.price}</p>
+                                          <button 
+                                          onClick={() => addToCart(data)}>
+                                            Add to cart
+                                          </button>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                           </div> 
+                        </Col>                
+                        )})};  
+                    </Row> 
+            </div> 
+        </div>
+      )}
+//list belanja
+const renderCarts = () => {
+  return(
+    <div>
+          <div className='row mt-5'>
+            <table className="table  text-center">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Product</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  cart.map((i, index) => (
+                    < tr key={i.id}>
+                      <th scope="row">{index + 1}</th>
+                      <th scope="row">
+                        <img 
+                        src={`${urlApi}/images/${i.product?.image_url}`} 
+                        style={{ width: '4rem' }} />
+                      </th>
+                      <td>{i.product?.name}</td>
+                      <td>
+                        Rp.{i.product?.price}
+                      </td>
+                      <td>
+                        <button
+                          style={{marginRight: '8px', backgroundColor: '#25140f', color: 'white'}}
+                          onClick={() => decrease(i)}
+                          className="btn btn-sm"
+                        >
+                          -
+                          </button>
+                        {i.qty}
+                        <button
+                          style={{marginLeft: '8px', backgroundColor: '#25140f', color: 'white'}}
+                          onClick={() => increase(i)}
+                          className="btn btn-sm"
+                        >
+                          +
+                          </button>
+                      </td>
+
+                      <td>
+                        <button 
+                        onClick={() => removeToCart(i)} 
+                        style={{backgroundColor: '#25140f', color: 'white'}}>
+                          Remove
+                          </button>
+                      </td >
+                    </tr >
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+          <div className="row">
+            <div className="col text-center">
+              <h4>TOTAL: Rp.{total()}</h4>
+            </div>
+          </div>
+        </div >
+     )}  
   
+     //membuat alamat
+     const renderDelivery = () => {
+       return(
+         <div>
+           <Container className='mt-5'>
+             <h3 style={{fontWeight: 'bold'}}>Delivery Information</h3>
+              <form>
+                <table className='d-flex'>
+                <div className='col-md-5'>
+                <div className='nama mt-4'>
+                  <th>Nama :</th>
+                  <br/>
+                  <input 
+                  name='name' 
+                  type='text' 
+                  placeholder='Nama Anda' 
+                  value={nama} 
+                  onChange={(e) => setNama(e.target.value)} 
+                  style={{width: '350px'}}/>
+                </div>
+                <div className='Detail-alamat mt-5'>
+                  <th>Detail Alamat :</th>
+                  <br/>
+                  <textarea 
+                  name='detail' 
+                  type='text' 
+                  placeholder='Detail Alamat Anda' 
+                  value={detail} 
+                  onChange={(e) => setDetail(e.target.value)} 
+                  style={{width: '350px', height: '100px'}}/>
+                </div>
+                {validation.error === 1 ? (<p className='mt-1 mb-1 mx-4'>{validation.message}</p>) : ''}
+                <button onClick={(e) => deliveryAddress(e)} className='btn btn-dark mt-4'>Simpan</button>
+                </div>
+                <div className='col md-2' style={{marginLeft: '200px', marginTop: '-9px'}}>
+                <div className='provinsi mt-4'>
+                  <th>Provinsi :</th>
+                  <br/>
+                  <input 
+                  name='provinsi' 
+                  type='text' 
+                  placeholder='Provinsi Anda' 
+                  value={provinsi} 
+                  onChange={(e) => setProvinsi(e.target.value)} 
+                  style={{width: '350px'}}/>
+                </div>
+                <div className='kecamatan mt-4'>
+                  <th>Kecamatan :</th>
+                  <br/>
+                  <input 
+                  name='kecamatan' 
+                  type='text' 
+                  placeholder='Kecamatan Anda' 
+                  value={kecamatan} 
+                  onChange={(e) => setKecamatan(e.target.value)} 
+                  style={{width: '350px'}}/>
+                </div>
+                <div className='kelurahan mt-4'>
+                  <th>kelurahan :</th>
+                  <br/>
+                  <input 
+                  name='kelurahan' 
+                  type='text' 
+                  placeholder='Kelurahan Anda' 
+                  value={kelurahan} 
+                  onChange={(e) => setKelurahan(e.target.value)} 
+                  style={{width: '350px'}}/>
+                </div>
+                <div className='kabupaten mt-4'>
+                  <th>Kabupaten :</th>
+                  <br/>
+                  <input 
+                  name='kabupaten' 
+                  type='text' 
+                  placeholder='Kabupaten Anda' 
+                  value={kabupaten} 
+                  onChange={(e) => setKabupaten(e.target.value)} 
+                  style={{width: '350px'}}/>
+                </div>
+                </div>
+               </table>
+              </form>
+           </Container>
+         </div>
+       )
+     }
+
+     const renderBooking = () => {
+       return(
+         <div>
+
+         </div>
+       )
+     }
 
   useEffect(() => {
-    // get()
+    getUser()
     toCarts()
   }, []);
 
 
   return(
-  <div>
-    <Container>
-      <div className='Product'>
-        <h3 className='title text-center mt-5'>Product</h3>
-          <div className='container'>
-            <Row md='3'>
-            {value.map( (data, Index) => {
-                   return( 
-                    <Col>
-                      <div key={Index}>
-                         <div className='Item'>
-                            <div className='Item-Product'>
-                                <img src={`${urlApi}/images/${data.product?.image_url}`} style={{height: '120px', marginLeft: '130px', marginTop: '10px', marginBottom: '25px'}}></img> 
-                                <div className='item-description mx-5'>
-                                    <h5 style={{textAlign: 'center'}}>{data.product?.name}</h5>
-                                    <p style={{fontSize: '14px', marginBottom: '20px'}}>{data.product?.description}</p>
-                                      <div className='d-flex bg-dark text-white' style={{width: '90px', borderRadius: '8px'}}>
-                                        <i className="fa-solid fa-tag" style={{paddingTop: '12px', paddingLeft: '14px', paddingRight: '7px'}}></i>
-                                        <p className='mx-2' style={{paddingTop: '9px'}}>{data.product?.tags}</p>
-                                      </div>
-                                      <div style={{marginTop: '15px', textAlign: 'center'}}>
-                                        <p className='fs-5'>Rp.{data.product?.price}</p>
-                                              <button className='btn btn-primary' onClick={() => addToCart()}>
-                                                Add to cart
-                                              </button>
-                                      </div>
-                                  </div>
-                                </div>
-                           </div>
-                      </div> 
-                      </Col>                
-                      )})};  
-                  </Row> 
-           </div> 
-      </div>
-      </Container>
-      <div>
-      <div className='row mt-5'>
-        <table className="table  text-center">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Product</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              cart.map((i, index) => (
-                < tr key={i.id}>
-                  <th scope="row">{index + 1}</th>
-                  <th scope="row">
-                    <img src={`${urlApi}/images/${i.product?.image_url}`} style={{ width: '4rem' }} />
-                  </th>
-                  <td>{i.product?.name}</td>
-                  <td>
-                    Rp.{i.product?.price}
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => decrease(i)}
-                      className="btn btn-primary btn-sm"
-                    >
-                      -
-                      </button>
-                    {i.qty}
-                    <button
-                      onClick={() => increase(i)}
-
-                      className="btn btn-primary btn-sm"
-                      size="sm"
-                    >
-                      +
-                      </button>
-                  </td>
-
-                  <td>
-                    <button onClick={() => removeToCart(i)} className="btn btn-danger">
-                      Remove
-                      </button>
-                  </td >
-                </tr >
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-      <div className="row">
-        <div className="col text-center">
-          <h4>TOTAL: Rp.{total()}</h4>
+    <div>
+        <div style={{backgroundColor: '#25140f', height: '70px'}}>
+            <h3 style={{paddingTop: '14px', color: 'white', marginLeft: '20px'}}>Shopping Cart</h3>
+            <h3 style={{color: 'white', marginTop: '-40px', textAlign: 'center'}}>MIKe.Store</h3>
+            <div style={{marginTop: '-2px', marginRight: '-30px'}}>
+              <i 
+                className="fa-solid fa-envelope" 
+                onClick={() => navigateTo(PAGE_BOOKING)} 
+                style={{color: 'white', float: 'right', marginTop: '-30px', marginRight: '340px', cursor: 'pointer'}}/>
+              <i 
+                className="fa-solid fa-location-dot" 
+                onClick={() => navigateTo(PAGE_DELIVERY)} 
+                style={{color: 'white', float: 'right', marginTop: '-31px', marginRight: '290px', cursor: 'pointer'}}/>
+              <i 
+                className="fa-solid fa-bag-shopping" 
+                onClick={() => navigateTo(PAGE_PRODUCTS)} 
+                style={{float: 'Right', marginRight: '180px', marginTop: '-31px', color: 'white', cursor: 'pointer'}}/>
+              <i 
+                className="fa-solid fa-cart-shopping" 
+                onClick={() => navigateTo(PAGE_CARTS)}  
+                style={{float: 'Right', marginRight: '240px', marginTop: '-31px', color: 'white', cursor: 'pointer'}}/>
+            <div style={{float: 'right', marginRight: '232px', marginTop: '-45px', color: 'white', width: '0px'}}>
+              {cart.length}
+            </div>
+              <Link to='/'>
+                <i 
+                className="fa-solid fa-arrow-left" 
+                style={{float: 'right', marginRight: '82px', marginTop: '-31px', color: 'white'}}/>
+              </Link>
+            </div>
         </div>
-      </div>
-    </div >
-      </div>
+          {/* pergantian page */}
+          <Container>
+            {page === PAGE_PRODUCTS && renderProducts()}
+            {page === PAGE_CARTS && renderCarts()}
+            {page === PAGE_DELIVERY && renderDelivery()}
+            {page === PAGE_BOOKING && renderBooking()}
+          </Container>
+    </div>
 )};
                    
 
