@@ -15,6 +15,7 @@ function Product() {
     const [cart, setCart] = useState([]); 
     const [value, setValue] = useState([]);
     const [nama, setNama] = useState([]);
+    const [address, setAddress] = useState([]);
     const [user, setUser] = useState([]);
     const [detail, setDetail] = useState([]);
     const [kabupaten, setKabupaten] = useState([]);
@@ -23,12 +24,11 @@ function Product() {
     const [provinsi, setProvinsi] = useState([]);
     const [validation, setValidation] = useState([]);
     const [page, setPage] = useState(PAGE_PRODUCTS);
-    // console.log(value)
-
+  
    //mendapatkan data cart
-   const toCarts = () => {
+   const toCarts = async() => {
      const token = Cookies.get('token');
-      axios.get(`${urlApi}/api/carts`, {
+     await axios.get(`${urlApi}/api/carts`, {
              headers: {Authorization : `${token}`}}, 
          )  
       .then(response => {
@@ -39,10 +39,11 @@ function Product() {
         })
    }
 
+
    //mendapatkan data user
-   const getUser = () => {
+   const getUser = async() => {
      const token = Cookies.get('token');
-      axios.get(`${urlApi}/auth/me`, {
+     await axios.get(`${urlApi}/auth/me`, {
         headers: {Authorization: `${token}`}
       })
       .then(response => {
@@ -54,10 +55,10 @@ function Product() {
    }
 
    //mendapatkan data delivery address
-   const deliveryAddress = () => {
-     const dataDelivery = {nama, user, detail, kabupaten, kecamatan, kelurahan, provinsi};
+   const deliveryAddress = async() => {
+     let dataDelivery = {nama, user, detail, kabupaten, kecamatan, kelurahan, provinsi};
      const token = Cookies.get('token');
-      axios.post(`${urlApi}/api/delivery-address`, dataDelivery, {
+     await axios.post(`${urlApi}/api/delivery-address`, dataDelivery, {
         headers: {Authorization: `${token}`}},
       )
       .then(response => {
@@ -67,6 +68,19 @@ function Product() {
         setValidation(err.message)
       })
    }
+
+   const getDeliveryAddress = async() => {
+    const token = Cookies.get('token');
+    await axios.get(`${urlApi}/api/delivery-address`, {
+       headers: {Authorization: `${token}`}},
+     )
+     .then(response => {
+       setAddress(response.data)
+     })
+     .catch(err => {
+       setAddress(err.message)
+     })
+  }
 
    //menambahkan(button addToCart) product ke keranjang belanja
     const addToCart = (item) => {
@@ -143,13 +157,6 @@ function Product() {
                                 <div className='item-description mx-5'>
                                   <h5 style={{textAlign: 'center'}}>{data.product?.name}</h5>
                                     <p style={{fontSize: '14px', marginBottom: '20px'}}>{data.product?.description}</p>
-                                      <div className='d-flex bg-dark text-white' style={{width: '90px', borderRadius: '8px'}}>
-                                        <i 
-                                          className="fa-solid fa-tag" 
-                                          style={{paddingTop: '12px', paddingLeft: '14px', paddingRight: '7px'}}>
-                                        </i>
-                                        <p className='mx-2' style={{paddingTop: '9px'}}>{data.product?.tags}</p>
-                                      </div>
                                       <div style={{marginTop: '15px', textAlign: 'center'}}>
                                         <p className='fs-5'>Rp.{data.product?.price}</p>
                                           <button 
@@ -167,6 +174,8 @@ function Product() {
             </div> 
         </div>
       )}
+
+
 //list belanja
 const renderCarts = () => {
   return(
@@ -193,11 +202,13 @@ const renderCarts = () => {
                         src={`${urlApi}/images/${i.product?.image_url}`} 
                         style={{ width: '4rem' }} />
                       </th>
-                      <td>{i.product?.name}</td>
-                      <td>
-                        Rp.{i.product?.price}
-                      </td>
-                      <td>
+                        <td>
+                          {i.product?.name}
+                        </td>
+                        <td>
+                          Rp.{i.product?.price}
+                        </td>
+                        <td>
                         <button
                           style={{marginRight: '8px', backgroundColor: '#25140f', color: 'white'}}
                           onClick={() => decrease(i)}
@@ -241,7 +252,7 @@ const renderCarts = () => {
        return(
          <div>
            <Container className='mt-5'>
-             <h3 style={{fontWeight: 'bold'}}>Delivery Information</h3>
+             <h3 style={{fontWeight: 'bold'}}>Delivery Address</h3>
               <form>
                 <table className='d-flex'>
                 <div className='col-md-5'>
@@ -326,16 +337,32 @@ const renderCarts = () => {
      const renderBooking = () => {
        return(
          <div>
-
+            {address.data?.map((data) => {
+              return(
+                <Container>
+                  <div className='d-flex'>
+                    <div className='col-md-2'>
+                      <label>Nama: {data.nama}</label>
+                      <label>Alamat: {data.detail}</label>
+                      <label>Provinsi: {data.provinsi}</label>
+                      <label>Kecamatan: {data.kecamatan}</label>
+                      <label>Kelurahan: {data.kelurahan}</label>
+                      <label>Kabupaten: {data.kabupaten}</label>
+                    </div>
+                  </div>
+                </Container>
+              )
+            })}
          </div>
        )
      }
 
   useEffect(() => {
     getUser()
+    getDeliveryAddress()
     toCarts()
   }, []);
-
+   
 
   return(
     <div>
