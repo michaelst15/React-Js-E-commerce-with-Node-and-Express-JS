@@ -96,10 +96,11 @@
   -webkit-appearance: none;
 } */
 
+
 .block-one {
   font-family: "Abril Fatface", cursive;
   height: 60px;
-  background-color: #25140f;
+  background-color: #5C5CFF;
   color: "red";
 }
 
@@ -108,9 +109,10 @@
 }
 
 .block-two {
-  display: flex;
+  /* display: flex; */
+  margin-top: 20px;
   width: 100%;
-  background-color: rgba(62, 30, 7, 0.887);
+  /* background-color: rgba(62, 30, 7, 0.887); */
   border-top: 1px solid white;
   border-bottom: 2px solid white;
   height: 500px;
@@ -121,14 +123,16 @@
 }
 
 .block-four {
-  background-color: rgba(62, 30, 7, 0.887);
+  /* background-color: rgba(62, 30, 7, 0.887); */
   height: 400px;
 }
 
 .block-five {
-  border-top: 1px solid white;
-  background-color: #25140f;
-  height: 400px;
+  margin-top: 600px;
+  border-top: 1px solid black;
+  /* background-color: #25140f; */
+  /* font-family: 'Abril Fatface', cursive; */
+  height: 260px;
   width: 100%;
 }
 
@@ -137,12 +141,13 @@ input {
 }
 
 .image {
-  margin-left: 70px;
+  margin-left: 350px;
+  margin-top: -200px;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display+SC&family=Quattrocento&display=swap");
 .about {
-  font-family: "Abril Fatface", cursive;
+  /* font-family: "Abril Fatface", cursive; */
   text-align: center;
   padding-top: 90px;
 }
@@ -159,10 +164,12 @@ input {
 
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display+SC&display=swap");
 #paragrafImage {
+  width: 200px;
   color: white;
   font-family: "Abril Fatface", cursive;
   font-size: 50px;
-  margin-left: 200px;
+  margin-top: 45px;
+  margin-left: 250px;
 }
 
 .App-logo {

@@ -28,7 +28,7 @@ function Logout() {
        <div>
           <button 
            onClick={logout} 
-           style={{float: 'right', marginRight: 43, marginTop: '-26px', color: 'white', backgroundColor: '#25140f', border: 'none'}}>Logout
+           style={{float: 'right', marginRight: 43, marginTop: '-26px', color: 'white', backgroundColor: '#5C5CFF', border: 'none'}}>Logout
           </button>
        </div>
     )
