@@ -60,11 +60,10 @@
 }
 
 .Item-Product {
-  width: 400px;
-  height: 450px;
+  width: 380px;
+  height: 400px;
   border: 2px solid #25140f;
   border-radius: 2pc;
-  margin: 15px;
 }
 
 .item-description button {
@@ -76,25 +75,6 @@
   cursor: pointer;
   background-color: #25140f;
 }
-
-.Item-Product-Second {
-  height: 450px;
-  border: 2px solid #25140f;
-  border-radius: 2pc;
-  margin-top: 900px;
-  margin: 15px;
-}
-
-/* .container {
-  margin-top: 60px;
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-}
-
-.container::-webkit-scrollbar {
-  -webkit-appearance: none;
-} */
 
 
 .block-one {
@@ -108,11 +88,15 @@
   margin-left: 70px;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Gentium+Plus:ital@1&family=Montserrat:ital,wght@1,100&family=Playfair+Display+SC&family=Quattrocento&family=Raleway:ital,wght@1,100&family=Tai+Heritage+Pro&display=swap');
+.card-mike-colect {
+  font-family: 'Gentium Plus', serif;
+}
+
+
 .block-two {
-  /* display: flex; */
   margin-top: 20px;
   width: 100%;
-  /* background-color: rgba(62, 30, 7, 0.887); */
   border-top: 1px solid white;
   border-bottom: 2px solid white;
   height: 500px;
@@ -123,15 +107,12 @@
 }
 
 .block-four {
-  /* background-color: rgba(62, 30, 7, 0.887); */
   height: 400px;
 }
 
 .block-five {
   margin-top: 600px;
   border-top: 1px solid black;
-  /* background-color: #25140f; */
-  /* font-family: 'Abril Fatface', cursive; */
   height: 260px;
   width: 100%;
 }
@@ -147,7 +128,6 @@ input {
 
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display+SC&family=Quattrocento&display=swap");
 .about {
-  /* font-family: "Abril Fatface", cursive; */
   text-align: center;
   padding-top: 90px;
 }
