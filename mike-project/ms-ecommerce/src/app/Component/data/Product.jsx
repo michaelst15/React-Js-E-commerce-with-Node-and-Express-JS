@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'; 
+import '../../../App.css';
 import {Container, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import urlApi from '../urlApi';
@@ -24,13 +25,12 @@ function Product() {
     const [provinsi, setProvinsi] = useState([]);
     const [validation, setValidation] = useState([]);
     const [page, setPage] = useState(PAGE_PRODUCTS);
+    const token = Cookies.get('token');
+    const header = {headers : {Authorization: `${token}`}};
   
    //mendapatkan data cart
    const toCarts = async() => {
-     const token = Cookies.get('token');
-     await axios.get(`${urlApi}/api/carts`, {
-             headers: {Authorization : `${token}`}}, 
-         )  
+     await axios.get(`${urlApi}/api/carts`, header)  
       .then(response => {
             setValue(response.data)
         })
@@ -42,10 +42,7 @@ function Product() {
 
    //mendapatkan data user
    const getUser = async() => {
-     const token = Cookies.get('token');
-     await axios.get(`${urlApi}/auth/me`, {
-        headers: {Authorization: `${token}`}
-      })
+     await axios.get(`${urlApi}/auth/me`, header)
       .then(response => {
         setUser(response.data)
       })
@@ -57,10 +54,7 @@ function Product() {
    //mendapatkan data delivery address
    const deliveryAddress = async() => {
      let dataDelivery = {nama, user, detail, kabupaten, kecamatan, kelurahan, provinsi};
-     const token = Cookies.get('token');
-     await axios.post(`${urlApi}/api/delivery-address`, dataDelivery, {
-        headers: {Authorization: `${token}`}},
-      )
+     await axios.post(`${urlApi}/api/delivery-address`, dataDelivery, header)
       .then(response => {
         setValidation(response.data)
       })
@@ -70,10 +64,7 @@ function Product() {
    }
 
    const getDeliveryAddress = async() => {
-    const token = Cookies.get('token');
-    await axios.get(`${urlApi}/api/delivery-address`, {
-       headers: {Authorization: `${token}`}},
-     )
+    await axios.get(`${urlApi}/api/delivery-address`, header)
      .then(response => {
        setAddress(response.data)
      })
@@ -144,7 +135,7 @@ function Product() {
           <h3 className='title text-center mt-5'>Product</h3>
             <div className='container'>
               <Row md='3'>
-              {value.map( (data, Index) => {
+              {value?.map( (data, Index) => {
                     return( 
                       <Col>
                         <div key={Index}>
@@ -239,7 +230,7 @@ const renderCarts = () => {
               </tbody>
             </table>
           </div>
-          <div className="row">
+          <div className="row" style={{marginBottom: '100px'}}>
             <div className="col text-center">
               <h4>TOTAL: Rp.{total()}</h4>
             </div>
@@ -251,7 +242,7 @@ const renderCarts = () => {
      const renderDelivery = () => {
        return(
          <div>
-           <Container className='mt-5'>
+           <Container style={{marginTop: '80px', marginBottom: '100px'}}>
              <h3 style={{fontWeight: 'bold'}}>Delivery Address</h3>
               <form>
                 <table className='d-flex'>
@@ -339,7 +330,7 @@ const renderCarts = () => {
          <div>
             {address.data?.map((data) => {
               return(
-                <Container>
+                <Container style={{marginTop: '80px', marginBottom: '100px'}}>
                   <div className='d-flex'>
                     <div className='col-md-2'>
                       <label>Nama: {data.nama}</label>
@@ -403,6 +394,20 @@ const renderCarts = () => {
             {page === PAGE_DELIVERY && renderDelivery()}
             {page === PAGE_BOOKING && renderBooking()}
           </Container>
+
+        <div className='footer-cart'>
+          <h2 className='title-Footer' style={{marginLeft: '590px', marginTop: '40px', fontFamily: 'Quattrocento, serif'}}>MIKe.Store</h2>
+          <div style={{marginLeft: '610px', marginTop: '23px'}}>
+              <i className="fa-brands fa-facebook mx-md-2" style={{cursor: 'pointer'}}></i>
+              <i className="fa-brands fa-twitter mx-md-2" style={{cursor: 'pointer'}}></i>
+              <i className="fa-brands fa-youtube mx-md-2" style={{cursor: 'pointer'}}></i>
+              <i className="fa-brands fa-instagram mx-md-2" style={{cursor: 'pointer'}}></i>
+          </div>
+          <div className='text-center mt-4'>
+            <p>Powerfull by Market Swatch</p>
+            <p>&copy;Copyright Build website 2022</p>
+          </div>
+        </div>
     </div>
 )};
                    
