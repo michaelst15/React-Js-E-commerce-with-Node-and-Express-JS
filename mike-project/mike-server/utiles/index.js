@@ -5,6 +5,7 @@ function getToken(req) {
     return token && token.length ? token : null;
 }
 
+
 //policy
 const policies = {
     guest(user, {can}) {
@@ -22,7 +23,7 @@ const policies = {
         can('update', 'Category');
         can('delete', 'Category');
         can('read', 'Order', {user_id: user._id});
-        can('update', 'User', {_id: user._id});
+        can('update', 'User', {user_id: user._id});
         can('read', 'Cart', {user_id: user._id});
         can('update', 'Cart', {user_id: user._id});
         can('view', 'DeliveryAddress');
