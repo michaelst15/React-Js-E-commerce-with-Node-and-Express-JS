@@ -19,11 +19,11 @@ class Lifecycle extends Component {
  
     Api = () => {                                   
     axios.get(
-       `https://newsapi.org/v2/everything?q=crypto&from=2022-02-07&sortBy=publishedAt&apiKey=1e4d7358c26843d98c618391469576e2`
+       `https://newsapi.org/v2/everything?q=tesla&from=2022-02-15&sortBy=publishedAt&apiKey=1e4d7358c26843d98c618391469576e2`
     ) 
         .then(response => {
             this.setState ({
-           data: console.log(response)
+           data: response.data.articles
             });
         }) 
         .catch(err => {
@@ -35,7 +35,7 @@ class Lifecycle extends Component {
 
     handlerSubmit = () => {
         axios.get(
-         `https://financialtimesmikilior1v1.p.rapidapi.com/getAspectsList`
+         `https://newsapi.org/v2/everything?q=${this.state.search}&from=2022-02-07&sortBy=publishedAt&apiKey=1e4d7358c26843d98c618391469576e2`
             ) 
         .then(response => {
             this.setState ({

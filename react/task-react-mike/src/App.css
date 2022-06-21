@@ -1,3 +1,9 @@
+@media only screen and(max-width: 750px) {
+  body {
+    color: blue;
+  }
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

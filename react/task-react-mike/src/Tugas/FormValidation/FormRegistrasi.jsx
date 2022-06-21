@@ -6,7 +6,7 @@ const Image = ({img}) => {
       <div> 
           <img className="w-100" style={{height: '630px'}} src={img}>
           </img>
-      </div>
+      </div> 
   )
 }
 
@@ -72,7 +72,7 @@ class FromRegistrasi extends React.Component {
                   <br />
                 <label>Motivasi Untuk Move On : 
                   <br />
-                    <textarea required='true' name='MotivasiMoveOn' id='textArea' id='' cols='40' rows='5' onChange={value => this.setState({MotivasiMoveOn: value.target.value})}></textarea>
+                    <textarea required='true' name='MotivasiMoveOn' id='textArea' cols='40' rows='5' onChange={value => this.setState({MotivasiMoveOn: value.target.value})}></textarea>
                 </label>
                   <br />
                   <br />
