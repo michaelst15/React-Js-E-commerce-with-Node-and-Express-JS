@@ -6,13 +6,13 @@ function Home() {
    const title2 = 'Data Market Analyst Global';
 
      return (
-       <div className="container bg-white" style={{marginTop: 50}}>
+       <div className="container bg-white" id='Learn' style={{marginTop: 50}}>
          <h3 className="fw-bold fst-italic">{title1}</h3>
          <p> Manfaat pertama yang akan didapatkan perusahaan jika melakukan analisa pasar adalah dapat lebih memahami apa yang diinginkan oleh pelanggan.
           Perusahaan bisa mengetahui produk seperti apa yang menarik perhatian pelanggan dan kualitas seperti apa yang diharapkannya.         
           Semua informasi yang berkaitan dengan keinginan pelanggan bisa diketahui melalui analisa pasar ini.          
           Dengan lebih memahami pelanggan, perusahaan bisa menciptakan produk yang sesuai dengan apa yang diinginkan oleh pelanggannya.</p>
-          <hr />
+          <hr />                                                                               
           <h2 className="text-center mt-5">{title2}</h2>
         <div className="container bg-white d-flex text-center">
           <div className='row'>

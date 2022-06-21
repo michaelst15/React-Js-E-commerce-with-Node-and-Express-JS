@@ -18,7 +18,7 @@
            <div style={{position: "absolute", top: 80, color: "white", width: 400, fontFamily: "Verdana, Geneva, Tahoma, sans-serif"}}>
               <h2>{title}</h2>  
                <p>{article}</p>   
-                <button className="btn btn-primary fw-bold">{buttonArticle}</button>
+                <a href='#Learn'><div className="btn btn-primary fw-bold">{buttonArticle}</div></a> 
            </div>
          </div>
      </div>
