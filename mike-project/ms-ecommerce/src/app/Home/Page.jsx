@@ -25,9 +25,11 @@ function Page() {
                     berbagai jenis dan bentuk, yang memiliki tampilan sesuai dengan selera anda. Dan anda bisa mendapatkannya dengan menambahkannya ke keraanjang 
                     belanja. Semoga anda dapat puas dengan kualitas jam tangan yang telah di sediakan.
                   </p>
+                  <a href='#Learn' style={{textDecoration: 'none', color: 'white'}}>
                   <button style={{marginTop: '20px',backgroundColor: '#003CB6', border: 'none', height: '50px', width: '100px', borderRadius: '10px', color: 'white'}}>
-                   <a href='#Learn' style={{textDecoration: 'none', color: 'white'}}>Learn</a> 
+                   Learn
                   </button>
+                  </a> 
                   </div>
                 </div>
                 <span className='image'>
@@ -54,7 +56,7 @@ function Page() {
                   <div className='col-md-6'>
                     <Card style={{backgroundColor: '#004CE6', color: 'white', borderRadius: '20px'}}>
                     <h3 style={{marginTop: '7px'}}>G-Shock</h3>
-                    <p id='paragraf-colect'>G-Shock sebenarnya adalah jam tangan yang dibuat oleh Casio, namun didesain dengan model yang lebih kasual dan sporty. 
+                    <p>G-Shock sebenarnya adalah jam tangan yang dibuat oleh Casio, namun didesain dengan model yang lebih kasual dan sporty. 
                        Buat kamu para pria yang suka jalan-jalan jauh, menyelam ke laut, naik gunung, dan aktivitas-aktivitas berat lainnya, G-Shock adalah merk jam tangan terkenal buat kamu.
                        Selain modelnya yang keren dan bikin kamu terlihat maskulin, Jam tangan G-Shock tersedia dalam berbagai macam warna. 
                        Warna-warna seperti hitam, cokelat tua hingga biru navy bisa menjadi pilihan buat kamu yang ingin tampil macho!
@@ -64,7 +66,7 @@ function Page() {
                   <div className='col-md-6'>
                     <Card style={{backgroundColor: '#004CE6', color: 'white', borderRadius: '20px'}}>
                     <h3 style={{marginTop: '7px'}}>Casio</h3>
-                    <p id='paragraf-colect'>Diantara merk jam tangan lainnya, mungkin jam tangan pria Casio merupakan yang paling unik dan anti-mainstream. 
+                    <p>Diantara merk jam tangan lainnya, mungkin jam tangan pria Casio merupakan yang paling unik dan anti-mainstream. 
                        Karena Casio memiliki berbagai macam tipe jam tangan yang unik dan bisa menjadi pilihan buat kamu para pria yang ingin tampil beda. 
                        Casio memiliki jam tangan seperti kalkulator. Tidak hanya itu, Casio juga memiliki jam tangan video games di dalamnya, 
                        sehingga kamu bisa melihat waktu dan juga bermain games sekaligus dengan jam tangan itu!
@@ -79,7 +81,7 @@ function Page() {
                       <div className='col-md-6'>
                         <Card style={{backgroundColor: '#004CE6', color: 'white', borderRadius: '20px'}}>
                         <h3 style={{marginTop: '7px'}}>Fossil</h3>
-                        <p id='paragraf-colect'>Fossil adalah merk jam tangan buat kamu yang ingin tampil elegan dan berkelas dengan sentuhan klasik yang tentu saja menambah kesan vintage pada diri kamu. 
+                        <p>Fossil adalah merk jam tangan buat kamu yang ingin tampil elegan dan berkelas dengan sentuhan klasik yang tentu saja menambah kesan vintage pada diri kamu. 
                            Terutama jam tangan Fossil yang terbuat dari kulit asli berwarna cokelat. Kalau kamu memakai jam tangan Fossil yang talinya terbuat dari kulit, dijamin, 
                            seiring menuanya kulit jam tangan kamu, kamu akan terlihat lebih elegan, karena aksesori apapun yang terbuat dari kulit asli cenderung membuat kaum pria terlihat lebih manly.
                         </p>
@@ -88,7 +90,7 @@ function Page() {
                       <div className='col-md-6'>
                         <Card style={{backgroundColor: '#004CE6', color: 'white', borderRadius: '20px'}}>
                         <h3 style={{marginTop: '7px'}}>Daniel Wellington</h3>
-                        <p id='paragraf-colect'>Buat kamu yang ingin tampil dengan jam tangan yang lebih mencolok, ada merk jam tangan pria bernama Daniel Wellington atau yang lebih dikenal dengan sebutan DW. 
+                        <p>Buat kamu yang ingin tampil dengan jam tangan yang lebih mencolok, ada merk jam tangan pria bernama Daniel Wellington atau yang lebih dikenal dengan sebutan DW. 
                            Jam tangan pria keren ini merupakan salah satu jam tangan yang talinya terbuat dari bahan yang halus serta berwarna-warni, seperti kombinasi merah, putih dan biru atau satu warna saja.
                            Selain itu, angka yang digunakan pada tubuh jam tangannya menggunakan angka romawi yang tentu saja menambah kesan vintage.
                         </p>

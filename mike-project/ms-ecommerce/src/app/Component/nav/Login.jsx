@@ -7,7 +7,7 @@ import {Card} from 'react-bootstrap';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
 
-//fitur login
+//fitur login             
 function Login(){
     const navigate = useNavigate();
     const [validation, setValidation] = useState([]);

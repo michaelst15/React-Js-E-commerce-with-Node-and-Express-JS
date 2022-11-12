@@ -350,6 +350,7 @@ const renderCarts = () => {
 
   useEffect(() => {
     getUser()
+    deliveryAddress()
     getDeliveryAddress()
     toCarts()
   }, []);

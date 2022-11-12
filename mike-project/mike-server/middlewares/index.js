@@ -6,18 +6,20 @@ const User = require('../app/user/model');
 function decodeToken() {
     return async function (req, res, next) {
         try{
+            // console.log(req)
             let token = getToken(req);
             // console.log(token);
             if(!token) return next();
             req.user = jwt.verify(token, config.secretKey);
             let user = await User.findOne({token: {$in: [token]}});
+            // console.log(user)
             if(!user){
                 res.json({
                     error: 1,
                     message: 'token expired'
                 });
             }
-        }
+        }    
         catch(err) {
            if(err && err.name === 'JsonWebTokenError'){
                return res.json({

@@ -166,14 +166,14 @@
 
 const index = async(req, res, next) => {
      try{
-       let {skip = 0, limit = 5, q = '', category = '', tags = []} = req.query;
+       let {skip = 0, limit = 32, q = '', category = '', tags = []} = req.query;
        let criteria = {};
 
        if(q.length) {
            criteria = {
                ...criteria, name: {$regex: `${q}`, $options: 'i'}
            }
-       }
+       }   
 
        if(category.length){
         let categoryResult = await Category.findOne({name: {$regex: `${category}`, $options: 'i'}});

@@ -13,23 +13,23 @@ const deliveryAddressRoute = require('./app/deliveryAddress/router');
 const cartRoute = require('./app/cart/router');
 const orderRoute = require('./app/order/router');
 const invoiceRoute = require('./app/invoice/router');
-
-
+        
+                                                                 
 var app = express();      
-
+     
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
+               
+app.use(cors());               
 app.use(decodeToken());     
-app.use(cors());
 app.use(logger('dev')); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/images', express.static(path.join(__dirname, 'public/images/product')));
-    
-
+         
+                                                               
 app.use('/auth', authController);
 app.use('/api', productRouter);
 app.use('/api', categoryRouter);
@@ -39,14 +39,14 @@ app.use('/api', cartRoute);
 app.use('/api', orderRoute);
 app.use('/api', invoiceRoute);
 
-
+                                      
 //home
 app.use('/', function(req, res){
   res.render('index', {
     title: 'mike-express'
   })
 })
-
+   
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -64,3 +64,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;     
+  
